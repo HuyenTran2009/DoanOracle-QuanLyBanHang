@@ -67,9 +67,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseHienThiSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="BLL\ListDanhMucSanPhamBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
     <Compile Include="BLL\GioHangBLL.cs" />
     <Compile Include="BLL\ListProductBLl.cs" />
@@ -77,6 +81,8 @@
     <Compile Include="BLL\ThanhToanBLL.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\Connection.cs" />
+    <Compile Include="DAL\HoaDonDAL.cs" />
+    <Compile Include="DAL\ListDanhMucSanPhamDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="DAL\GioHangDAL.cs" />
     <Compile Include="DAL\ListProductDAL.cs" />
@@ -100,7 +106,10 @@
     <Compile Include="DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="DTO\LoaiSP.cs" />
     <Compile Include="DTO\Product.cs" />
+    <Compile Include="Extensions\ProductExtensions.cs" />
+    <Compile Include="Extensions\UserExtensions.cs" />
     <Compile Include="GioHang.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,49 +1,66 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using QuanLyBanHang.BLL;
+using QuanLyBanHang.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace QuanLyBanHang.DAL
 {
 
     public class GioHangDAL: BaseDAL
     {
-        public GioHangBLL gH = new GioHangBLL();
 
-        public void GhiGioHang(GioHangBLL gh)
+        private Dictionary<string, int> _productCosts;
+        public GioHangDAL()
         {
-            List<ProductBLL> lp = new List<ProductBLL>();
-            int total = 0;
-            foreach (var el in gh.IdSL)
+            if (!ProductExtensions._productsMapping.Any())
             {
-                var product = new ProductBLL(el.Key);
-                total += Convert.ToInt32(product.pBLL.pDAL.PCost) * el.Value;
+                ProductExtensions._productsMapping = new ListProductDAL("", 0, 0).lDAL.ToDictionary(d => d.PID);
             }
 
-            OracleConnection con = ConnectionManager.Connect();
-            con.Open();
-            int maxId = 0;
-            // Execute a SQL SELECT
-            OracleCommand cmd = con.CreateCommand();
-            cmd.CommandText = $"SELECT MAX(MaHD) from {this.prefix}HOA_DON";
-            OracleDataReader dr = cmd.ExecuteReader();
-            if (dr.HasRows)
+            _productCosts = ProductExtensions._productsMapping.Select(d => d.Value)
+                            .ToDictionary(d => d.PID, d => Convert.ToInt32(d.PCost));
+        }
+
+        public bool GhiGioHang(GioHangBLL gh)
+        {
+            if (!gh.HasHoaDonId)
             {
-                DataTable data = new DataTable();
-                data.Load(dr);
-                foreach (DataRow row in data.Rows)
-                {
-                    maxId = Convert.ToInt32(row[0].ToString());
-                }
+                var hoaDonDAL = new HoaDonDAL();
+                hoaDonDAL.TaoMoiHoaDon(gh);
             }
-            string cmdText = $"INSERT INTO {this.prefix}HOA_DON VALUES(" + (maxId + 1).ToString() + ",TO_DATE(SYSDATE, 'MM-DD-YYYY'," + "1,1,1," + total.ToString() + ",Dang giao)";
+
+            XyLyNgoaiLe(() => RemoveAll(gh.HoaDonId));
+
+            foreach (var item in gh.IdSL)
+            {
+                XyLyNgoaiLe(() => Insert(gh.HoaDonId, item));
+            }
+            return true;
+        }
+
+        private int Insert(int hoaDonId, KeyValuePair<int, int> item)
+        {
+            int total = _productCosts[item.Key.ToString()] * item.Value;
+            string cmdText = $"INSERT INTO {this.prefix}CT_HOA_DON" + //(NgayMuaHang, MaKH, CachThanhToan, MaNV, ThanhTien, TinhTrangHoaDon) " +
+                   $" VALUES({hoaDonId}, {item.Key}, {item.Value}, {_productCosts[item.Key.ToString()]}, {total})";
+            OracleCommand cmd = con.CreateCustomCommand();
             cmd.CommandText = cmdText;
-            dr = cmd.ExecuteReader();
-            // Clean up
-            dr.Dispose();
+            var result = cmd.ExecuteNonQuery();
             cmd.Dispose();
-            ConnectionManager.Disconnect();
+            return result;
+        }
+
+        private void RemoveAll(int hoaDonId)
+        {
+            string cmdText = $"DELETE {this.prefix}CT_HOA_DON" + 
+                   $" WHERE MAHD = {hoaDonId}";
+            OracleCommand cmd = con.CreateCustomCommand();
+            cmd.CommandText = cmdText;
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
         }
     }
 }

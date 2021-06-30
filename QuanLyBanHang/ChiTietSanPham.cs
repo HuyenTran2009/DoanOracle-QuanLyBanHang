@@ -1,5 +1,6 @@
 ﻿using QuanLyBanHang.BLL;
 using QuanLyBanHang.DTO;
+using QuanLyBanHang.Extensions;
 using System;
 using System.Drawing;
 using System.Net;
@@ -20,9 +21,8 @@ namespace QuanLyBanHang
             get
             {
                 if (instance == null) instance = new ChiTietSanPham(ChiTietSanPham.Id);
-                return ChiTietSanPham.instance;
+                return instance;
             }
-            private set { ChiTietSanPham.instance = value; }
         }
 
         public static int Id { get => id; set => id = value; }
@@ -100,12 +100,7 @@ namespace QuanLyBanHang
             this.ProductName.Text = iProduct.pBLL.pDAL.PName;
             this.ProductDetail.Text = iProduct.pBLL.pDAL.PDetail;
             this.ProductCost.Text = iProduct.pBLL.pDAL.PCost + ".000đ";
-            var request = WebRequest.Create(iProduct.pBLL.pDAL.PImgUrl);
-            using (var response = request.GetResponse())
-            using (var stream = response.GetResponseStream())
-            {
-                this.ProductPic.Image = Bitmap.FromStream(stream);
-            }
+            this.ProductPic.Image = ProductExtensions.TryCacheImage(iProduct.pBLL.pDAL.PImgUrl);
         }
 
         private void ChiTietSanPham_Load(object sender, EventArgs e)
@@ -117,9 +112,10 @@ namespace QuanLyBanHang
         {
             this.Hide();
             if (ManHinhChinh.Flat == 1)
-                ManHinhChinh.Instance.Visible = true;
-            else ManHinhTimKiem.Instance.Visible = true;
-            
+                ManHinhChinh.Instance.TryShow();
+            else 
+                ManHinhTimKiem.Instance.TryShow();
+
         }
 
         private void increase_Click(object sender, EventArgs e)
@@ -135,14 +131,11 @@ namespace QuanLyBanHang
         }
 
         private void BuyNow_Click(object sender, EventArgs e)
-        {   
-            if (GioHangBLL.Instance.checkId(Convert.ToInt32(BuyQty.Text), ChiTietSanPham.Id))
-            {
-                GioHang.Instance.reLoad();
-                return;
-            }
-            GioHangBLL.Instance.addGioHang(Convert.ToInt32(BuyQty.Text), ChiTietSanPham.Id);
-            GioHang.Instance.themChiTietGH(Convert.ToInt32(BuyQty.Text), ChiTietSanPham.Id);
+        {  
+            var @try = GioHangBLL.Instance.TryAddGioHang(Convert.ToInt32(BuyQty.Text), ChiTietSanPham.Id);
+            //GioHang.Instance.ThemChiTietGH(Convert.ToInt32(BuyQty.Text), ChiTietSanPham.Id);
+            //if(@try)
+            //    GioHang.Instance.reLoad();
 
         }
 
@@ -163,15 +156,5 @@ namespace QuanLyBanHang
             else if (temp.checkQty(Convert.ToInt32(BuyQty.Text) - 1) == 2)
                 MessageBox.Show("Het Hang!");
         }
-
-        /* public static void increaseQtyCart()
-         {
-             ChiTietSanPham.Instance.QtyCart.Text = (Convert.ToInt32(ChiTietSanPham.Instance.QtyCart.Text) + 1).ToString();
-         }
-
-         public static void decreaseQtyCart()
-         {
-             ChiTietSanPham.Instance.QtyCart.Text = (Convert.ToInt32(ChiTietSanPham.Instance.QtyCart.Text) - 1).ToString();
-         }*/
     }
 }

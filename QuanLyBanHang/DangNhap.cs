@@ -8,17 +8,6 @@ namespace QuanLyBanHang
     {
         public BaseForm from;
         public BaseForm From { get { return from; } set { from = value; } }
-        private static string _username;
-        public static string Username { 
-            get 
-            {
-                return _username;
-            }
-            set
-            {
-                _username = value;
-            }
-        }
 
         private UserBLL User;
 
@@ -74,8 +63,7 @@ namespace QuanLyBanHang
             }
             else
             {
-                DangNhap.Username = User.DisplayUsername;
-                From.DangNhapThanhCong(User);
+                From.HienThiThongTinDangNhap();
                 this.Hide();
             }
         }

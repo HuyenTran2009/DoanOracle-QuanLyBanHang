@@ -1,4 +1,5 @@
 ﻿using QuanLyBanHang.DAL;
+using QuanLyBanHang.Extensions;
 
 namespace QuanLyBanHang.BLL
 {
@@ -15,7 +16,9 @@ namespace QuanLyBanHang.BLL
             this.DisplayUsername = tenHienThi;
             _instance = this;
         }
+
         private UserBLL _instance;
+        public int MaTK { get; set; }
         public string DisplayUsername { get; set; }
         public string Username { get; private set; }
         public string Password { get; private set; }
@@ -23,7 +26,12 @@ namespace QuanLyBanHang.BLL
         public bool KiemTraDangNhap()
         {
             UserDAL userDAL = new UserDAL();
-            return userDAL.DangNhap(_instance);       
+            if (userDAL.DangNhap(_instance))
+            {
+                UserExtensions.LoggedInUser = _instance;
+                return true;
+            }
+            return false;
         }
 
         public bool DangKy()
