@@ -1,6 +1,8 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using QuanLyBanHang.BLL;
+using QuanLyBanHang.Extensions;
 using System;
+using System.Linq;
 
 namespace QuanLyBanHang.DAL
 {
@@ -59,8 +61,14 @@ namespace QuanLyBanHang.DAL
             {
                 return false;
             }
+            var ids = gh.IdSL.Keys.Select(d => d.ToString());
 
-            string cmdText = $"UPDATE {this.prefix}HOA_DON SET TinhTrangHoaDon = 'Da Thanh Tan'" +
+            var tongGia = ProductExtensions._productsMapping
+                                           .Where(d => ids.Contains(d.Key))
+                                           .Select(d => Convert.ToInt32(d.Value.PCost))
+                                           .Sum();
+            string cmdText = $"UPDATE {this.prefix}HOA_DON SET TinhTrangHoaDon = 'Da Thanh Toan'," +
+                $" ThanhTien = {tongGia}" +
                 $"WHERE MAHD = {gh.HoaDonId}";
 
             return XyLyNgoaiLe(() => {
