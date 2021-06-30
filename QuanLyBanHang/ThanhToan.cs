@@ -1,5 +1,6 @@
 ﻿using QuanLyBanHang.BLL;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace QuanLyBanHang
@@ -13,16 +14,15 @@ namespace QuanLyBanHang
             get
             {
                 if (instance == null) instance = new MHThanhToan();
-                return MHThanhToan.instance;
+                return instance;
             }
-            private set { MHThanhToan.instance = value; }
         }
         public MHThanhToan()
         {
             InitializeComponent();
         }
 
-        public int themSanPhamSangHoaDon(int sl, int id)
+        public int ThemSanPhamSangHoaDon(int sl, int id)
         {
             ProductBLL newPro = new ProductBLL(id);
             Panel returnPanel = new Panel();
@@ -74,12 +74,10 @@ namespace QuanLyBanHang
         public string TongThanhTien()
         {
             int sumTotal=0;
-            int i = 0;
             MHThanhToan.instance = new MHThanhToan();
             foreach (var el in GioHangBLL.Instance.IdSL)
             {
-                sumTotal+= this.themSanPhamSangHoaDon(el.Value, el.Key);
-                i++;
+                sumTotal+= this.ThemSanPhamSangHoaDon(el.Value, el.Key);
             }
             return sumTotal.ToString()+".000đ";
         }
@@ -93,6 +91,47 @@ namespace QuanLyBanHang
         {
             this.Visible = false;
             GioHang.Instance.Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!ValildateThongTinGiaoHang())
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+
+            if(GioHangBLL.Instance.ThanhToan())
+            {
+                MessageBox.Show("Thanh toán thành công!");
+                ClearGioHang();
+                TroVeTrangChinh();
+            }
+            else
+            {
+                MessageBox.Show("Thanh toán thất bại!");
+            }
+        }
+
+        private void TroVeTrangChinh()
+        {
+            ManHinhChinh.Instance.Show();
+            this.Hide();
+        }
+
+        private void ClearGioHang()
+        {
+            GioHangBLL.Instance.IdSL = new Dictionary<int, int>();
+        }
+
+        private bool ValildateThongTinGiaoHang()
+        {
+            var requiredIinfo = new List<string>{
+                sdtTxt.Text,
+                diaChiTxt.Text,
+               hoTenTxt.Text
+            };
+            return requiredIinfo.TrueForAll(d => !string.IsNullOrEmpty(d));
         }
     }
 }

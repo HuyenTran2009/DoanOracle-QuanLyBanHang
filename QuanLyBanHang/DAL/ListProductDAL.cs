@@ -10,23 +10,37 @@ namespace QuanLyBanHang.DAL
     {
         public List<Product> lDAL;
         public int TongSo { get; set; } = -1;
-        public ListProductDAL(string searchtext = "", int skip = 0, int take = 6)
+        public ListProductDAL(string searchtext = "", int skip = 0, int take = 6, string loadSp = "")
+        {
+            XyLyNgoaiLe(() => Load(searchtext, skip, take, loadSp));
+        }
+
+        private void Load(string searchtext = "", int skip = 0, int take = 6, string loaiSp = "")
         {
             this.lDAL = new List<Product>();
-            OracleConnection con = ConnectionManager.Connect();
             // Execute a SQL SELECT
-            OracleCommand cmd = con.CreateCommand();
-            var query = $"SELECT * FROM {this.prefix}SAN_PHAM ";
+            OracleCommand cmd = con.CreateCustomCommand();
+            var mainQuery = $"{this.prefix}SAN_PHAM ";
             if (!string.IsNullOrEmpty(searchtext))
             {
-                query += $" WHERE TenSP LIKE '%{searchtext}%' ";
+                mainQuery += $" WHERE TenSP LIKE '%{searchtext}%' ";
             }
 
-            query += $"OFFSET {skip} ROWS " +
-                     $"FETCH NEXT {take} ROWS ONLY";
-            
+            if (!string.IsNullOrEmpty(loaiSp))
+            {
+                mainQuery += $" WHERE LoaiSp = '{loaiSp}' ";
+            }
+
+            var query = $"SELECT * FROM  {mainQuery}";
+
+            if (take != 0)
+            {
+                query += $"OFFSET {skip} ROWS " +
+                         $"FETCH NEXT {take} ROWS ONLY";
+            }
+
             cmd.CommandText = query;
-            //                  
+            
             OracleDataReader dr = cmd.ExecuteReader();
 
             if (dr.HasRows)
@@ -47,22 +61,21 @@ namespace QuanLyBanHang.DAL
                 }
             }
 
-            if(TongSo == -1)
+            if (TongSo == -1)
             {
-                LayTongSo(con);
+                LayTongSo(mainQuery);
             }
             // Clean up
             dr.Dispose();
             cmd.Dispose();
-            ConnectionManager.Disconnect();
         }
 
-        private void LayTongSo(OracleConnection con)
+        private void LayTongSo(string mainQuery)
         {
             try
             {
-                OracleCommand cmd = con.CreateCommand();
-                cmd.CommandText = $"SELECT COUNT(*) FROM {this.prefix}SAN_PHAM";
+                OracleCommand cmd = con.CreateCustomCommand();
+                cmd.CommandText = $"SELECT COUNT(*) FROM {mainQuery}";
                 var dr = cmd.ExecuteScalar();
                 TongSo = int.Parse(dr.ToString());
                 cmd.Dispose();

@@ -29,59 +29,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Điện Thoại - Máy Tính Bảng");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Điện Tử - Điện Lạnh");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Phụ Kiện - Thiết Bị Số");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Laptop - Thiết Bị IT");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Máy Ảnh - Quay Phim");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Điện Gia Dụng");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Nhà Cửa Đời Sống");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Hàng Tiêu Dùng");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Đồ Chơi, Mẹ & Bé");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Thời Trang - Phụ Kiện");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Thể Thao - Phụ Kiện");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Xe Máy, Oto, Xe Đạp");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Hàng Quốc Tế");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Sách, VPP & Quà Tặng");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Voucher - Dịch Vụ");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("DANH MỤC SẢN PHẨM", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode11,
-            treeNode12,
-            treeNode13,
-            treeNode14,
-            treeNode15});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("DANH MỤC SẢN PHẨM");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManHinhTimKiem));
             this.SearchInfo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.DanhMucSanPham = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.usernameLbl = new System.Windows.Forms.Label();
-            this.loginB = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.UserCartB = new System.Windows.Forms.Button();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.loginB = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.UserCart = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.UserCartB = new System.Windows.Forms.Button();
             this.LogoShop = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.DanhMucSanPham = new System.Windows.Forms.TreeView();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserCart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogoShop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // SearchInfo
@@ -114,71 +84,8 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(435, 236);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 25);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1469, 757);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1485, 757);
             this.flowLayoutPanel1.TabIndex = 4;
-            // 
-            // DanhMucSanPham
-            // 
-            this.DanhMucSanPham.BackColor = System.Drawing.Color.LightCyan;
-            this.DanhMucSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DanhMucSanPham.ItemHeight = 35;
-            this.DanhMucSanPham.Location = new System.Drawing.Point(16, 160);
-            this.DanhMucSanPham.Margin = new System.Windows.Forms.Padding(4);
-            this.DanhMucSanPham.Name = "DanhMucSanPham";
-            treeNode1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode1.Name = "DienThoai";
-            treeNode1.Text = "Điện Thoại - Máy Tính Bảng";
-            treeNode2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode2.Name = "DienTu";
-            treeNode2.Text = "Điện Tử - Điện Lạnh";
-            treeNode3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode3.Name = "PhuKienSo";
-            treeNode3.Text = "Phụ Kiện - Thiết Bị Số";
-            treeNode4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode4.Name = "Laptop";
-            treeNode4.Text = "Laptop - Thiết Bị IT";
-            treeNode5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode5.Name = "MayAnh";
-            treeNode5.Text = "Máy Ảnh - Quay Phim";
-            treeNode6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode6.Name = "DienGiaDung";
-            treeNode6.Text = "Điện Gia Dụng";
-            treeNode7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode7.Name = "NhaCuaDoiSong";
-            treeNode7.Text = "Nhà Cửa Đời Sống";
-            treeNode8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode8.Name = "HangTieuDung";
-            treeNode8.Text = "Hàng Tiêu Dùng";
-            treeNode9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode9.Name = "DoChoi";
-            treeNode9.Text = "Đồ Chơi, Mẹ & Bé";
-            treeNode10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode10.Name = "ThoiTrang";
-            treeNode10.Text = "Thời Trang - Phụ Kiện";
-            treeNode11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode11.Name = "TheThao";
-            treeNode11.Text = "Thể Thao - Phụ Kiện";
-            treeNode12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode12.Name = "PhuongTienGiaoThong";
-            treeNode12.Text = "Xe Máy, Oto, Xe Đạp";
-            treeNode13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode13.Name = "HangQuocTe";
-            treeNode13.Text = "Hàng Quốc Tế";
-            treeNode14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode14.Name = "VanPhongPham";
-            treeNode14.Text = "Sách, VPP & Quà Tặng";
-            treeNode15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            treeNode15.Name = "Voucher";
-            treeNode15.Text = "Voucher - Dịch Vụ";
-            treeNode16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            treeNode16.ForeColor = System.Drawing.Color.Black;
-            treeNode16.Name = "DanhMuc";
-            treeNode16.Text = "DANH MỤC SẢN PHẨM";
-            this.DanhMucSanPham.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode16});
-            this.DanhMucSanPham.ShowLines = false;
-            this.DanhMucSanPham.Size = new System.Drawing.Size(399, 833);
-            this.DanhMucSanPham.TabIndex = 3;
             // 
             // panel1
             // 
@@ -194,7 +101,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1904, 148);
+            this.panel1.Size = new System.Drawing.Size(1920, 148);
             this.panel1.TabIndex = 1;
             // 
             // usernameLbl
@@ -203,9 +110,19 @@
             this.usernameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameLbl.Location = new System.Drawing.Point(1598, 17);
             this.usernameLbl.Name = "usernameLbl";
-            this.usernameLbl.Size = new System.Drawing.Size(172, 25);
+            this.usernameLbl.Size = new System.Drawing.Size(0, 25);
             this.usernameLbl.TabIndex = 17;
-            this.usernameLbl.Text = "(Chưa đăng nhập)";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::QuanLyBanHang.Properties.Resources.geometric_animals_drawing_clipart_images_gallery_for_free_download_geometric_animal_png_670_473;
+            this.pictureBox3.Location = new System.Drawing.Point(1205, 0);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(259, 148);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 16;
+            this.pictureBox3.TabStop = false;
             // 
             // loginB
             // 
@@ -220,6 +137,33 @@
             this.loginB.Text = "Đăng nhập";
             this.loginB.UseVisualStyleBackColor = false;
             this.loginB.Click += new System.EventHandler(this.loginB_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Wheat;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Image = global::QuanLyBanHang.Properties.Resources.cart1;
+            this.pictureBox2.Location = new System.Drawing.Point(1472, 60);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(45, 34);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.GioHang_Click);
+            // 
+            // UserCart
+            // 
+            this.UserCart.BackColor = System.Drawing.Color.Wheat;
+            this.UserCart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.UserCart.Image = global::QuanLyBanHang.Properties.Resources.cart1;
+            this.UserCart.Location = new System.Drawing.Point(1975, 66);
+            this.UserCart.Margin = new System.Windows.Forms.Padding(4);
+            this.UserCart.Name = "UserCart";
+            this.UserCart.Size = new System.Drawing.Size(57, 49);
+            this.UserCart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.UserCart.TabIndex = 3;
+            this.UserCart.TabStop = false;
             // 
             // button1
             // 
@@ -250,6 +194,18 @@
             this.UserCartB.Text = "Giỏ hàng";
             this.UserCartB.UseVisualStyleBackColor = false;
             // 
+            // LogoShop
+            // 
+            this.LogoShop.BackColor = System.Drawing.Color.Transparent;
+            this.LogoShop.Image = global::QuanLyBanHang.Properties.Resources.ShopLogo;
+            this.LogoShop.Location = new System.Drawing.Point(0, 0);
+            this.LogoShop.Margin = new System.Windows.Forms.Padding(4);
+            this.LogoShop.Name = "LogoShop";
+            this.LogoShop.Size = new System.Drawing.Size(288, 148);
+            this.LogoShop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LogoShop.TabIndex = 0;
+            this.LogoShop.TabStop = false;
+            // 
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.LightCyan;
@@ -275,55 +231,23 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.Back_Click);
             // 
-            // pictureBox3
+            // DanhMucSanPham
             // 
-            this.pictureBox3.Image = global::QuanLyBanHang.Properties.Resources.geometric_animals_drawing_clipart_images_gallery_for_free_download_geometric_animal_png_670_473;
-            this.pictureBox3.Location = new System.Drawing.Point(1205, 0);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(259, 148);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 16;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Wheat;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Image = global::QuanLyBanHang.Properties.Resources.cart1;
-            this.pictureBox2.Location = new System.Drawing.Point(1472, 60);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(45, 34);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 9;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.GioHang_Click);
-            // 
-            // UserCart
-            // 
-            this.UserCart.BackColor = System.Drawing.Color.Wheat;
-            this.UserCart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.UserCart.Image = global::QuanLyBanHang.Properties.Resources.cart1;
-            this.UserCart.Location = new System.Drawing.Point(1975, 66);
-            this.UserCart.Margin = new System.Windows.Forms.Padding(4);
-            this.UserCart.Name = "UserCart";
-            this.UserCart.Size = new System.Drawing.Size(57, 49);
-            this.UserCart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.UserCart.TabIndex = 3;
-            this.UserCart.TabStop = false;
-            // 
-            // LogoShop
-            // 
-            this.LogoShop.BackColor = System.Drawing.Color.Transparent;
-            this.LogoShop.Image = global::QuanLyBanHang.Properties.Resources.ShopLogo;
-            this.LogoShop.Location = new System.Drawing.Point(0, 0);
-            this.LogoShop.Margin = new System.Windows.Forms.Padding(4);
-            this.LogoShop.Name = "LogoShop";
-            this.LogoShop.Size = new System.Drawing.Size(288, 148);
-            this.LogoShop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.LogoShop.TabIndex = 0;
-            this.LogoShop.TabStop = false;
+            this.DanhMucSanPham.BackColor = System.Drawing.Color.LightCyan;
+            this.DanhMucSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DanhMucSanPham.ItemHeight = 35;
+            this.DanhMucSanPham.Location = new System.Drawing.Point(16, 160);
+            this.DanhMucSanPham.Margin = new System.Windows.Forms.Padding(4);
+            this.DanhMucSanPham.Name = "DanhMucSanPham";
+            treeNode1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            treeNode1.ForeColor = System.Drawing.Color.Black;
+            treeNode1.Name = "DanhMuc";
+            treeNode1.Text = "DANH MỤC SẢN PHẨM";
+            this.DanhMucSanPham.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            this.DanhMucSanPham.ShowLines = false;
+            this.DanhMucSanPham.Size = new System.Drawing.Size(399, 833);
+            this.DanhMucSanPham.TabIndex = 3;
             // 
             // ManHinhTimKiem
             // 
@@ -349,18 +273,17 @@
             this.Load += new System.EventHandler(this.ManHinhTimKiem_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserCart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogoShop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TreeView DanhMucSanPham;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox SearchInfo;
@@ -375,5 +298,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label usernameLbl;
+        private System.Windows.Forms.TreeView DanhMucSanPham;
     }
 }

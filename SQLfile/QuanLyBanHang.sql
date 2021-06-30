@@ -214,6 +214,11 @@ Insert into LOAI_SP (MALOAI,TENLOAI) values ('008',N'Nhà Cửa Đời Sống');
 Insert into LOAI_SP (MALOAI,TENLOAI) values ('009',N'Hàng Quốc Tế');
 Insert into LOAI_SP (MALOAI,TENLOAI) values ('010',N'Làm đẹp - Sức Khoe');
 
+Insert into nhan_vien values(1, 'Nhan vien 1', 'Dia chi 1', 12234, 'Ban hang');
+Insert into Khach_hang values(1, 'Khach hang 1', 'a@example.com', 'Dia chi Khach hang 1', 12234);
+
+Insert into Thanh_Toan values(1, 'Tien mat');
+Insert into Thanh_Toan values(2, 'The');
 
 Insert into SAN_PHAM (MASP,TENSP,LOAISP,GIA,SLTON,IMGURL,DETAIL) values (1,N'Tinh Dầu Sả Chanh Karoma','010',88,177,'https://salt.tikicdn.com/cache/w390/ts/product/12/4d/cd/6f71388d60989f8def002c9da54d29c2.jpg',N'Tinh Dầu Xông Phòng Sả Chanh Karoma (50ml) được chiết xuất từ lá sả chanh bằng phương pháp chưng cất hơi nước. Mùi hương nồng ấm rất dễ chịu đặc trưng của miền nhiệt đới từ sả chanh khiến không khí trở nên dễ chịu, sạch sẽ, vì hoạt chất có trong tinh dầu sả chanh có khả năng diệt khuẩn, hấp thụ các mùi hôi tự nhiên. Không những thế, sả chanh còn nổi tiếng trong việc xua đuổi muỗi, hỗ trợ an thần, giúp bạn phấn chấn, bớt căng thẳng hơn.');
 Insert into SAN_PHAM (MASP,TENSP,LOAISP,GIA,SLTON,IMGURL,DETAIL) values (2,N'Thám Tử Lừng Danh Conan 97','003',19,200,'https://salt.tikicdn.com/cache/w390/ts/product/1c/38/86/9b6a579e095939a7c9365752ecac72b4.jpg',N'Conan, Mori Kogoro, Amuro Toru, và Wakita Kanenori. Bộ tứ kì lạ ấy cùng nhau đi tới một nhà thờ bỏ hoang ẩn mình trong núi sâu ở Nagano. Phải chăng chờ đợi họ ở đó là những án mạng và những mật mã bí ẩn!? Giữa lúc ấy, Conan cố gắng tìm kiếm gợi ý quan trọng liên quan tới chân tướng của “RUM” từ Amuro…!');

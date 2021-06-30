@@ -1,61 +1,57 @@
-﻿using System;
-using System.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oracle.ManagedDataAccess;
-using Oracle.ManagedDataAccess.Client;
-using QuanLyBanHang.DTO;
+﻿using Oracle.ManagedDataAccess.Client;
 using QuanLyBanHang.BLL;
+using System;
+using System.Data;
 
 namespace QuanLyBanHang.DAL
 {
-
     public class UserDAL: BaseDAL
     {
         public bool DangNhap(UserBLL user)
         {
-            OracleConnection con = ConnectionManager.Connect();
-
-            OracleCommand cmd = con.CreateCommand();
-            cmd.CommandText = $"SELECT TenHienThi FROM {this.prefix}TAI_KHOAN " +
-                $"WHERE TENTK = '{user.Username}' " +
-                $"AND MATKHAU = '{user.Password}'";
-            var dr = cmd.ExecuteScalar();
-            bool thanhCong = false;
-
-            if (dr != null)
+            return XyLyNgoaiLe<bool>(() =>
             {
-                thanhCong = true;
-                user.DisplayUsername = dr.ToString();
-            }
+                OracleCommand cmd = con.CreateCustomCommand();
+                cmd.CommandText = $"SELECT MATK, TenHienThi FROM {this.prefix}TAI_KHOAN " +
+                    $"WHERE TENTK = '{user.Username}' " +
+                    $"AND MATKHAU = '{user.Password}'";
+                var dr = cmd.ExecuteReader();
+                bool thanhCong = false;
 
-            // Clean up
+                if (dr.HasRows)
+                {
+                    DataTable data = new DataTable();
+                    data.Load(dr);
+                    var row = data.Rows[0];
+                    user.MaTK = Convert.ToInt32(row[0].ToString());
+                    user.DisplayUsername = row[1].ToString();
+                    thanhCong = true;
+                }
 
-            cmd.Dispose();
-            ConnectionManager.Disconnect();
-
-            return thanhCong; 
+                cmd.Dispose();
+                return thanhCong;
+            });
         }
 
         public bool DangKy(UserBLL user)
         {
-            var stt = GetLast();
-            OracleConnection con = ConnectionManager.Connect();
-            OracleCommand cmd = con.CreateCommand();
-            cmd.CommandText = $"Insert into {this.prefix}TAI_KHOAN (MATK,TENTK, MATKHAU, TenHienThi) values ({stt},'{user.Username}','{user.Password}', '{user.DisplayUsername}')";
-            var dr = cmd.ExecuteNonQuery();
-            cmd.Dispose();
-            ConnectionManager.Disconnect();
-            return dr > 0;
+            return XyLyNgoaiLe<bool>(() =>
+            {
+                var stt = GetLast();
+                OracleCommand cmd = con.CreateCustomCommand();
+                cmd.CommandText = $"Insert into {this.prefix}TAI_KHOAN (MATK,TENTK, MATKHAU, TenHienThi) values ({stt},'{user.Username}','{user.Password}', '{user.DisplayUsername}')";
+                var dr = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                user.MaTK = stt;
+                return dr > 0;
+            });
         }
 
         private int GetLast()
         {
-            OracleConnection con = ConnectionManager.Connect();
             int stt = 0;
-            OracleCommand cmd = con.CreateCommand();
+            OracleConnection con1 = ConnectionManager.Connect();
+            OracleCommand cmd = con1.CreateCustomCommand();
             cmd.CommandText = $"Select max(MaTK) from {this.prefix}TAI_KHOAN";
             var dem = cmd.ExecuteScalar();
             if (dem != null)
@@ -63,7 +59,6 @@ namespace QuanLyBanHang.DAL
                 stt = Convert.ToInt32(dem.ToString());
             }
             cmd.Dispose();
-            ConnectionManager.Disconnect();
             return stt + 1;
         }
     }

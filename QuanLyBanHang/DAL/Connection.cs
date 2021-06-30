@@ -17,13 +17,21 @@ namespace QuanLyBanHang.DAL
         public static OracleConnection Connect()
         {
             con = new OracleConnection();
-            con.ConnectionString = constr;
-            con.Open();
+            if (con.State == System.Data.ConnectionState.Closed)
+            {
+                con.ConnectionString = constr;
+                con.Open();
+            }
             return con;
         }
 
         public static void Disconnect()
         {
+            if (con.State == System.Data.ConnectionState.Open)
+            {
+                con.Close();
+            }
+
             con.Dispose();
         }
     }
